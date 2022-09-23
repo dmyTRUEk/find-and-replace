@@ -6,7 +6,7 @@ let findandreplace_loaded = 1
 
 
 nnoremap <Plug>(findandreplace_n)    :call findandreplace#AskAndReplaceAllNormal()<CR>
-nnoremap <Plug>(findandreplace_x) m` :call findandreplace#AskAndReplaceAllVisual()<CR> ``
+xnoremap <Plug>(findandreplace_x) m` :call findandreplace#AskAndReplaceAllVisual()<CR> ``
 
 
 if !exists('g:findandreplace_disable_remaps') || g:findandreplace_disable_remaps == 0
