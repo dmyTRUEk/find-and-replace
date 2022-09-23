@@ -1,4 +1,4 @@
-func findandreplace#AskAndReplaceAllNormal()
+func! findandreplace#AskAndReplaceAllNormal()
     " save current cursor position
     let l:saved_winview = winsaveview()
     let l:selected_text = expand("<cword>")
@@ -22,7 +22,7 @@ func findandreplace#AskAndReplaceAllNormal()
 endf
 
 
-func findandreplace#AskAndReplaceAllVisual()
+func! findandreplace#AskAndReplaceAllVisual()
     " TODO?: add check if its not visual mode, then exit with msg: "not a visual mode"
     let l:mode = visualmode()
     if l:mode ==# "v"
