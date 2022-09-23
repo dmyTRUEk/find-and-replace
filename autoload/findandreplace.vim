@@ -34,7 +34,7 @@ func findandreplace#AskAndReplaceAllVisual()
             endif
             return
         endif
-        let l:cursor_on_end = getpos("'`")[2] > getpos(".")[2]
+        let l:cursor_on_end = getpos("'<")[2] <= getpos("'`")[2]
         let l:selected_text = getline(l:line_start)[l:column_start-(l:cursor_on_end ? 1 : 2) : l:column_end-(l:cursor_on_end ? 2 : 1)]
         call inputsave()
         let l:replace_by = input('Replace by: ', l:selected_text)
