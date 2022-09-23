@@ -1,18 +1,21 @@
 func findandreplace#AskAndReplaceAllNormal()
     " save current cursor position
     let l:saved_winview = winsaveview()
-    let l:current_word = expand("<cword>")
+    let l:selected_text = expand("<cword>")
     call inputsave()
-    let l:replace_by = input('Replace by: ', l:current_word)
+    let l:replace_by = input('Replace by: ', l:selected_text)
     call inputrestore()
-    if l:replace_by != ""
-        echo "\n"
-        execute ':%s/\<' . l:current_word . '\>/' . l:replace_by . '/g'
+    if l:replace_by == l:selected_text
+        echo "  Inputed text is same, exiting..."
+    elseif l:replace_by != ""
+        silent execute ':%s/\<' . l:selected_text . '\>/' . l:replace_by . '/g'
+        echo "  Successfully replaced."
     else
         echo "Inputed text is empty, exiting..."
         " TODO: do nothing or
         "       replace without asking or
         "       ask if they are sure?
+        return
     endif
     " restore cursor position
     call winrestview(l:saved_winview)
@@ -39,15 +42,17 @@ func findandreplace#AskAndReplaceAllVisual()
         call inputsave()
         let l:replace_by = input('Replace by: ', l:selected_text)
         call inputrestore()
-        if l:replace_by != ""
+        if l:replace_by == l:selected_text
+            echo "  Inputed text is same, exiting..."
+        elseif l:replace_by != ""
             " TODO: super rare bug: if trying to rename to smt that contains \)
             "       maybe try to replace all \) -> \\) before replacing?
             "       also maybe the same is for \( ?
             " round brackets here bcof possible spaces
-            execute ':%s/\(' . l:selected_text . '\)/' . l:replace_by . '/g'
+            silent execute ':%s/\(' . l:selected_text . '\)/' . l:replace_by . '/g'
             " restore cursor position
             call setpos(".", [l:saved_curpos[0], l:saved_curpos[1], l:saved_curpos[4], "none"])
-            echom "Successfully replaced"
+            echom "  Successfully replaced."
         endif
 
     elseif l:mode ==# "V"
