@@ -33,5 +33,5 @@ xnoremap <F2> <Plug>(findandreplace_x)
 
 
 ## Todo
-- ? remove message from vim `N substitutions on M lines`
+- nothing for now, if you have some suggestions, feel free to open issue
 
