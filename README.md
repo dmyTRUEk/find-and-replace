@@ -33,5 +33,5 @@ xnoremap <F2> <Plug>(findandreplace_x)
 
 
 ## Todo
-- nothing for now, if you have some suggestions, feel free to open issue
+- nothing for now, if you have some suggestions, feel free to [open issue](https://github.com/dmyTRUEk/find-and-replace/issues/new)
 
