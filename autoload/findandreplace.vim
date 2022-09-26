@@ -55,12 +55,12 @@ func! findandreplace#AskAndReplaceAllVisual()
             echom "  Successfully replaced."
         endif
 
-    elseif l:mode ==# "V"
+    elseif l:mode == "V"
         " Visual line mode
         " TODO: or maybe better without `AskAndReplaceAllVisual`?
         echom "AskAndReplaceAll not implemented for VISUAL LINE mode"
 
-    elseif l:mode ==# "\<C-v>"
+    elseif l:mode == "\<C-v>"
         " Visual block mode
         " TODO: or maybe better without `AskAndReplaceAllVisual`?
         echom "AskAndReplaceAll not implemented for VISUAL BLOCK mode"
