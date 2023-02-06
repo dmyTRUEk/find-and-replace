@@ -1,12 +1,16 @@
 # Find and Replace
 Vim plugin for easy find and replace.
 
-This plugin provides bind (`F2` by default) for:
-- changing word from Normal mode
-- changing selected text from Visual mode
+This plugin provides bind (`F2` by default) for replacing all occurrences of:
+- word under cursor from Normal mode
+- selected text from Visual mode
 
 This plugin does exactly `:%s/\<WordBefore\>/WordAfter/g`,
-but provides simple binds for most frequent use cases of it.
+but wrapped up with easy to use "UI" and
+provides simple binds for most frequent use cases of it.
+
+**⚠ WARNING ⚠:** this plugin is in experimental phase,
+so feature set and provided commands may vary a lot.
 
 
 ## Installation
