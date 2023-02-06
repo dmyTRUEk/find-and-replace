@@ -5,13 +5,13 @@ endif
 let findandreplace_loaded = 1
 
 
-nnoremap <Plug>(findandreplace_n)    :call findandreplace#AskAndReplaceAllNormal()<CR>
-xnoremap <Plug>(findandreplace_x) m` :call findandreplace#AskAndReplaceAllVisual()<CR> ``
+command! FindAndReplaceN call findandreplace#AskAndReplaceAllNormal()
+command! FindAndReplaceX call findandreplace#AskAndReplaceAllVisual()
 
 
 if !exists('g:findandreplace_disable_remaps') || g:findandreplace_disable_remaps == 0
     " keybinds:
-    nnoremap <F2> <Plug>(findandreplace_n)
-    xnoremap <F2> <Plug>(findandreplace_x)
+    nnoremap <F2> :FindAndReplaceN<CR>
+    xnoremap <F2> :<C-U>FindAndReplaceX<CR>
 endif
 

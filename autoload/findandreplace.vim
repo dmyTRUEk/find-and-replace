@@ -7,15 +7,15 @@ func! findandreplace#AskAndReplaceAllNormal()
     call inputrestore()
     if l:replace_by == l:selected_text
         echo "  Inputed text is same, exiting..."
-    elseif l:replace_by != ""
-        silent execute ':%s/\<' . l:selected_text . '\>/' . l:replace_by . '/g'
-        echo "  Successfully replaced."
-    else
+    elseif l:replace_by ==# ""
         echo "Inputed text is empty, exiting..."
         " TODO: do nothing or
         "       replace without asking or
         "       ask if they are sure?
         return
+    else
+        silent execute ':%s/\<' . l:selected_text . '\>/' . l:replace_by . '/g'
+        echo "  Successfully replaced."
     endif
     " restore cursor position
     call winrestview(l:saved_winview)
@@ -37,33 +37,38 @@ func! findandreplace#AskAndReplaceAllVisual()
             endif
             return
         endif
-        let l:cursor_on_end = getpos("'<")[2] <= getpos("'`")[2]
-        let l:selected_text = getline(l:line_start)[l:column_start-(l:cursor_on_end ? 1 : 2) : l:column_end-(l:cursor_on_end ? 2 : 1)]
+        let l:selected_text = getline(l:line_start)[l:column_start-1 : l:column_end-1]
         call inputsave()
         let l:replace_by = input('Replace by: ', l:selected_text)
         call inputrestore()
         if l:replace_by == l:selected_text
             echo "  Inputed text is same, exiting..."
-        elseif l:replace_by != ""
+        elseif l:replace_by ==# ""
+            echo "Inputed text is empty, exiting..."
+            " TODO: do nothing or
+            "       replace without asking or
+            "       ask if they are sure?
+        else
             " TODO: super rare bug: if trying to rename to smt that contains \)
             "       maybe try to replace all \) -> \\) before replacing?
             "       also maybe the same is for \( ?
             " round brackets here bcof possible spaces
             silent execute ':%s/\(' . l:selected_text . '\)/' . l:replace_by . '/g'
             " restore cursor position
-            call setpos(".", [l:saved_curpos[0], l:saved_curpos[1], l:saved_curpos[4], "none"])
             echom "  Successfully replaced."
         endif
+
+        call setpos(".", l:saved_curpos)
 
     elseif l:mode == "V"
         " Visual line mode
         " TODO: or maybe better without `AskAndReplaceAllVisual`?
-        echom "AskAndReplaceAll not implemented for VISUAL LINE mode"
+        echom "AskAndReplaceAll is not implemented for VISUAL LINE mode"
 
     elseif l:mode == "\<C-v>"
         " Visual block mode
         " TODO: or maybe better without `AskAndReplaceAllVisual`?
-        echom "AskAndReplaceAll not implemented for VISUAL BLOCK mode"
+        echom "AskAndReplaceAll is not implemented for VISUAL BLOCK mode"
 
     else
         " Unknown visual mode

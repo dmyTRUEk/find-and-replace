@@ -11,9 +11,15 @@ but provides simple binds for most frequent use cases of it.
 
 ## Installation
 Just enable it in your preferable plugin manager.
+
 Using [vim-plug](https://github.com/junegunn/vim-plug):
 ```
 Plug 'dmytruek/find-and-replace'
+```
+
+Using [packer](https://github.com/wbthomason/packer.nvim):
+```
+use 'dmytruek/find-and-replace'
 ```
 
 
@@ -27,8 +33,8 @@ let g:findandreplace_disable_remaps = 1
 And set your own
 (be sure not to map functions meant for visual mode to normal mode and vice versa):
 ```
-nnoremap <F2> <Plug>(findandreplace_n)
-xnoremap <F2> <Plug>(findandreplace_x)
+nnoremap <F2> :FindAndReplaceN<CR>
+xnoremap <F2> :<C-U>FindAndReplaceX<CR>
 ```
 
 
