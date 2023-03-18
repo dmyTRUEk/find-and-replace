@@ -5,7 +5,7 @@ func! findandreplace#AskAndReplaceAllNormal()
     call inputsave()
     let l:replace_by = input('Replace by: ', l:selected_text)
     call inputrestore()
-    if l:replace_by == l:selected_text
+    if l:replace_by ==# l:selected_text
         echo "  Inputed text is same, exiting..."
     elseif l:replace_by ==# ""
         echo "Inputed text is empty, exiting..."
@@ -41,7 +41,7 @@ func! findandreplace#AskAndReplaceAllVisual()
         call inputsave()
         let l:replace_by = input('Replace by: ', l:selected_text)
         call inputrestore()
-        if l:replace_by == l:selected_text
+        if l:replace_by ==# l:selected_text
             echo "  Inputed text is same, exiting..."
         elseif l:replace_by ==# ""
             echo "Inputed text is empty, exiting..."
